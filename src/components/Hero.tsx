@@ -34,10 +34,10 @@ export default function Hero({ onOpenModal }: HeroProps) {
           alt="Chennai Coast Marina Beach Hero Mobile"
           fill
           priority
-          className="object-cover object-right-top opacity-100"
+          className="object-cover object-top opacity-100"
         />
-        {/* Mobile vertical gradient overlay for maximum text clarity */}
-        <div className="absolute inset-0 bg-linear-to-b from-white/90 via-white/75 via-50% to-white/30 pointer-events-none" />
+        {/* Mobile top-only vertical gradient transition: solid white behind text at top, fading smoothly to 100% transparent so the bottom lighthouse and landmark are crystal clear */}
+        <div className="absolute inset-x-0 top-0 h-[60%] bg-linear-to-b from-white/95 via-white/80 via-55% to-transparent pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
