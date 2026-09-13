@@ -10,9 +10,9 @@ interface HeroProps {
 
 export default function Hero({ onOpenModal }: HeroProps) {
   return (
-    <section id="home" className="relative bg-slate-50 overflow-hidden pt-6 sm:pt-10 pb-16 sm:pb-24 lg:pb-32">
+    <section id="home" className="relative bg-slate-50 overflow-hidden pt-0 pb-16 sm:pb-24 lg:pb-32">
       {/* 
-        Hero Background Image - Uncropped & Clean
+        Hero Background Image - Flush against Header
       */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -20,7 +20,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           alt="Chennai Coast Marina Beach Hero"
           fill
           priority
-          className="object-contain object-right-top lg:object-right opacity-100"
+          className="object-cover object-right-top md:object-[72%_top] opacity-100"
         />
         {/* Soft gradient overlay on the left behind text for optimum legibility */}
         <div className="absolute inset-y-0 left-0 w-full lg:w-3/5 bg-linear-to-r from-white via-white/85 lg:via-white/75 via-50% to-transparent" />
@@ -28,7 +28,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-2 sm:pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-8 sm:pt-12">
           {/* Left Text & Callouts Content */}
           <div className="lg:col-span-8 space-y-4 sm:space-y-6">
             {/* Top Subtitle Eyebrow */}
