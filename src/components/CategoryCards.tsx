@@ -62,7 +62,7 @@ export default function CategoryCards({ onOpenModal }: CategoryCardsProps) {
   ];
 
   return (
-    <section id="categories" className="py-10 sm:py-16 bg-white">
+    <section id="categories" className="py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Row */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 sm:mb-8 gap-3 sm:gap-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MapPin, MessageSquare, Menu, X } from "lucide-react";
 
 interface NavbarProps {
@@ -18,6 +18,29 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
     { name: "About", href: "#about", id: "about" },
     { name: "Contact", href: "#contact", id: "contact" },
   ];
+
+  // ScrollSpy observer to automatically update active link as user scrolls
+  useEffect(() => {
+    const handleScroll = () => {
+      const sectionIds = navLinks.map((link) => link.id);
+      const scrollPosition = window.scrollY + 120;
+
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sectionIds[i]);
+        if (section) {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveTab(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-2xs transition-all">
@@ -42,25 +65,37 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={() => setActiveTab(link.id)}
-              className={`relative text-sm font-semibold transition-colors py-2 ${
-                activeTab === link.id
-                  ? "text-blue-600"
-                  : "text-slate-600 hover:text-slate-900"
-              }`}
-            >
-              {link.name}
-              {activeTab === link.id && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full animate-in fade-in zoom-in-50 duration-150" />
-              )}
-            </a>
-          ))}
+        {/* Desktop Navigation Links - Equal Spacing & Dynamic Blue Indicators */}
+        <nav className="hidden md:flex items-center space-x-10">
+          {navLinks.map((link) => {
+            const isActive = activeTab === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={() => setActiveTab(link.id)}
+                className={`group relative text-sm font-semibold transition-colors py-2 px-1 ${
+                  isActive
+                    ? "text-blue-600 font-bold"
+                    : "text-slate-600 hover:text-blue-600"
+                }`}
+              >
+                {link.name}
+                {/* 
+                  Bottom Indicator:
+                  Default state is blank/hidden (scale-x-0, opacity-0).
+                  On Hover OR when Active/Selected section: highlights in solid blue color with smooth transition!
+                */}
+                <span
+                  className={`absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full transition-all duration-200 ease-out origin-center ${
+                    isActive
+                      ? "opacity-100 scale-x-100"
+                      : "opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100"
+                  }`}
+                />
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right CTA Button */}
@@ -103,10 +138,10 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
                 setActiveTab(link.id);
                 setMobileMenuOpen(false);
               }}
-              className={`block px-3 py-2 rounded-lg text-base font-semibold ${
+              className={`block px-3 py-2 rounded-lg text-base font-semibold transition-colors ${
                 activeTab === link.id
                   ? "bg-blue-50 text-blue-600"
-                  : "text-slate-700 hover:bg-slate-50"
+                  : "text-slate-700 hover:bg-slate-50 hover:text-blue-600"
               }`}
             >
               {link.name}
