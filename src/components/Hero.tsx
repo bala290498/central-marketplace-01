@@ -22,9 +22,8 @@ export default function Hero({ onOpenModal }: HeroProps) {
           priority
           className="object-cover object-right-top md:object-[72%_top] opacity-100"
         />
-        {/* Soft gradient overlay on the left behind text for optimum legibility */}
-        <div className="absolute inset-y-0 left-0 w-full lg:w-3/5 bg-linear-to-r from-white via-white/85 lg:via-white/75 via-50% to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-slate-50 to-transparent" />
+        {/* Left-only text overlay fade: covers strictly behind the left text block, fading out smoothly so the entire rest of the image is crisp and clear */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-[50%] lg:w-[42%] bg-linear-to-r from-white/95 via-white/75 via-60% to-transparent pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
