@@ -14,16 +14,30 @@ export default function Hero({ onOpenModal }: HeroProps) {
       {/* 
         Hero Background Image - Flush against Header
       */}
-      <div className="absolute inset-0 z-0">
+      {/* Desktop Background Image */}
+      <div className="hidden md:block absolute inset-0 z-0">
         <Image
           src="/hero/601B9E4C-DF98-41B2-8051-1BBBEF1B67E1.webp"
-          alt="Chennai Coast Marina Beach Hero"
+          alt="Chennai Coast Marina Beach Hero Desktop"
           fill
           priority
           className="object-cover object-right-top md:object-[72%_top] opacity-100"
         />
         {/* Left-only text overlay fade: covers strictly behind the left text block, fading out smoothly so the entire rest of the image is crisp and clear */}
         <div className="absolute inset-y-0 left-0 w-full md:w-[50%] lg:w-[42%] bg-linear-to-r from-white/95 via-white/75 via-60% to-transparent pointer-events-none" />
+      </div>
+
+      {/* Mobile Background Image */}
+      <div className="block md:hidden absolute inset-0 z-0">
+        <Image
+          src="/hero/mobile.webp"
+          alt="Chennai Coast Marina Beach Hero Mobile"
+          fill
+          priority
+          className="object-cover object-right-top opacity-100"
+        />
+        {/* Mobile vertical gradient overlay for maximum text clarity */}
+        <div className="absolute inset-0 bg-linear-to-b from-white/90 via-white/75 via-50% to-white/30 pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
