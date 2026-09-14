@@ -178,13 +178,13 @@ export async function GET(req: NextRequest) {
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
-                backgroundColor: "#fef2f2",
-                border: "1.5px solid #fecaca",
+                backgroundColor: "#faf5ff",
+                border: "1.5px solid #e9d5ff",
                 padding: "12px 22px",
                 borderRadius: "40px",
                 fontSize: "18px",
                 fontWeight: 700,
-                color: "#b91c1c",
+                color: "#7e22ce",
               }}
             >
               🛍️ Local Sellers
