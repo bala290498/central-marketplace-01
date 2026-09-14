@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 
@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   title: "Central Marketplace - Chennai Desk | Find Locally! Connect Directly!",
   description: "We connect people, customers and buyers with property owners, service providers and local sellers in Chennai.",
   keywords: ["Chennai marketplace", "Local Chennai services", "Chennai property rentals", "Chennai home food", "Chennai local sellers"],
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({

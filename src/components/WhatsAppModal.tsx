@@ -401,7 +401,7 @@ export default function WhatsAppModal({
                     setCategory(e.target.value);
                     if (errors.category) setErrors({ ...errors, category: undefined });
                   }}
-                  className={`w-full mt-1.5 p-3 rounded-xl border font-semibold text-xs sm:text-sm text-slate-900 transition-all cursor-pointer ${
+                  className={`w-full mt-1.5 p-3 rounded-xl border font-semibold text-base sm:text-sm text-slate-900 transition-all cursor-pointer ${
                     errors.category
                       ? "border-rose-500 bg-rose-50/40 focus:border-rose-600"
                       : "border-slate-300 bg-slate-50/50 focus:bg-white focus:border-blue-600"
@@ -438,7 +438,7 @@ export default function WhatsAppModal({
                     setArea(e.target.value);
                     if (errors.area) setErrors({ ...errors, area: undefined });
                   }}
-                  className={`w-full mt-1 p-3 rounded-xl border font-semibold text-xs sm:text-sm text-slate-900 transition-all ${
+                  className={`w-full mt-1 p-3 rounded-xl border font-semibold text-base sm:text-sm text-slate-900 transition-all ${
                     errors.area
                       ? "border-rose-500 bg-rose-50/40 focus:border-rose-600"
                       : "border-slate-300 bg-slate-50/50 focus:bg-white focus:border-blue-600"
@@ -468,7 +468,7 @@ export default function WhatsAppModal({
                     setName(e.target.value);
                     if (errors.name) setErrors({ ...errors, name: undefined });
                   }}
-                  className={`w-full mt-1 p-3 rounded-xl border font-semibold text-xs sm:text-sm text-slate-900 transition-all ${
+                  className={`w-full mt-1 p-3 rounded-xl border font-semibold text-base sm:text-sm text-slate-900 transition-all ${
                     errors.name
                       ? "border-rose-500 bg-rose-50/40 focus:border-rose-600"
                       : "border-slate-300 bg-slate-50/50 focus:bg-white focus:border-blue-600"
@@ -498,7 +498,7 @@ export default function WhatsAppModal({
                     setPhone(e.target.value);
                     if (errors.phone) setErrors({ ...errors, phone: undefined });
                   }}
-                  className={`w-full mt-1 p-3 rounded-xl border font-semibold text-xs sm:text-sm text-slate-900 transition-all ${
+                  className={`w-full mt-1 p-3 rounded-xl border font-semibold text-base sm:text-sm text-slate-900 transition-all ${
                     errors.phone
                       ? "border-rose-500 bg-rose-50/40 focus:border-rose-600"
                       : "border-slate-300 bg-slate-50/50 focus:bg-white focus:border-blue-600"
