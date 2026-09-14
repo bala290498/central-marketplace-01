@@ -29,7 +29,7 @@ export default function Footer({ onOpenModal }: FooterProps) {
               </div>
             </div>
             <p className="text-slate-400 text-xs font-medium">
-              Find Local. Connect Directly.
+              Find Locally! Connect Directly!
             </p>
           </div>
 

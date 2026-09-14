@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Search, Rocket, ArrowRight } from "lucide-react";
+import { Search, Plus, ArrowRight } from "lucide-react";
 
 interface ActionCardsSectionProps {
   onOpenModal: (option?: "search" | "list", category?: string) => void;
@@ -23,7 +23,7 @@ export default function ActionCardsSection({ onOpenModal }: ActionCardsSectionPr
                   I am looking for a contact
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-base font-medium">
-                  Find property, services, providers nearby in Chennai.
+                  Find verified property, home foods, trusted service providers, and local sellers nearby in Chennai.
                 </p>
               </div>
             </div>
@@ -43,7 +43,7 @@ export default function ActionCardsSection({ onOpenModal }: ActionCardsSectionPr
           <div className="bg-white border border-emerald-100 p-6 sm:p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
             <div className="flex items-start gap-4 sm:gap-5">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
-                <Rocket className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
+                <Plus className="w-6 h-6 sm:w-7 sm:h-7 stroke-[3]" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">

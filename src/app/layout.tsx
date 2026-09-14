@@ -15,7 +15,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Central Marketplace - Chennai Desk | Find Local. Connect Directly.",
+  title: "Central Marketplace - Chennai Desk | Find Locally! Connect Directly!",
   description: "We connect people, customers and buyers with property owners, service providers and local sellers in Chennai.",
   keywords: ["Chennai marketplace", "Local Chennai services", "Chennai property rentals", "Chennai home food", "Chennai local sellers"],
 };

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Users, Store, Handshake, Heart, Search, Rocket, ArrowRight } from "lucide-react";
+import { Users, Store, Handshake, Heart, Search, Plus, ArrowRight } from "lucide-react";
 
 interface HeroProps {
   onOpenModal: (option?: "search" | "list", category?: string) => void;
@@ -53,7 +53,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
               </div>
 
               {/* Mobile Cursive Handwriting Text (Visible on mobile/tablet top-right, hidden on desktop lg) */}
-              <div className="lg:hidden relative transform rotate-2 -translate-y-1">
+              <div className="lg:hidden relative transform -rotate-12 -translate-y-1">
                 <span className="font-handwriting text-2xl sm:text-3xl text-blue-700 font-bold block leading-tight text-right drop-shadow-xs">
                   Chennai <br />
                   Connects Here
@@ -76,8 +76,8 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
-              Find Local. <br />
-              <span className="text-slate-900">Connect Directly.</span>
+              Find Locally! <br />
+              <span className="text-slate-900">Connect Directly!</span>
             </h1>
 
             {/* Sub-description paragraph */}
@@ -86,30 +86,33 @@ export default function Hero({ onOpenModal }: HeroProps) {
               providers and local sellers in Chennai.
             </p>
 
-            {/* 3 Feature Badges - Containerless with dark text & icons to stand out */}
+            {/* 3 Feature Badges - Containerless with dark text & icons, 1 word per line */}
             <div className="pt-3 sm:pt-4">
-              <div className="w-full sm:w-auto grid grid-cols-3 sm:inline-flex items-center divide-x divide-slate-400/60 text-center sm:text-left gap-0 sm:gap-6">
+              <div className="w-full sm:w-auto grid grid-cols-3 sm:inline-flex items-center divide-x divide-slate-400/60 text-center">
                 {/* Item 1 */}
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2 sm:px-0">
+                <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
                   <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
-                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
-                    Local People
+                  <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
+                    Local <br />
+                    People
                   </span>
                 </div>
 
                 {/* Item 2 */}
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2 sm:px-0">
+                <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
                   <Store className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
-                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
-                    Local Businesses
+                  <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
+                    Local <br />
+                    Businesses
                   </span>
                 </div>
 
                 {/* Item 3 */}
-                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2 sm:px-0">
+                <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
                   <Handshake className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
-                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
-                    Stronger Communities
+                  <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
+                    Stronger <br />
+                    Communities
                   </span>
                 </div>
               </div>
@@ -119,14 +122,14 @@ export default function Hero({ onOpenModal }: HeroProps) {
           {/* Right Cursive Script & Sticker Badge Section (Desktop lg only) */}
           <div className="hidden lg:flex lg:col-span-4 flex-col items-end justify-between h-full pt-2 lg:pt-0 relative gap-4">
             {/* Cursive Handwriting Text */}
-            <div className="relative transform rotate-3 translate-x-2 my-0 text-right">
-              <span className="font-handwriting text-4xl lg:text-5xl text-blue-700 font-bold block leading-tight drop-shadow-xs">
+            <div className="relative transform -rotate-12 translate-x-2 my-0 text-right">
+              <span className="font-handwriting text-4xl lg:text-5xl text-white font-bold block leading-tight drop-shadow-md">
                 Chennai <br />
                 Connects Here
               </span>
               {/* Decorative Swoosh under text */}
               <svg
-                className="w-44 lg:w-52 h-4 text-blue-500 mt-0.5 ml-auto"
+                className="w-44 lg:w-52 h-4 text-white mt-0.5 ml-auto drop-shadow-sm"
                 viewBox="0 0 200 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +171,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                   I am looking for a contact
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-base font-medium">
-                  Find property, services, providers nearby in Chennai.
+                  Find verified property, home foods, trusted service providers, and local sellers nearby in Chennai.
                 </p>
               </div>
             </div>
@@ -188,7 +191,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           <div className="bg-[#F0FDF4]/95 backdrop-blur-md border border-emerald-200/90 p-5 sm:p-7 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
             <div className="flex items-start gap-4 sm:gap-5">
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#00A859] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
-                <Rocket className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
+                <Plus className="w-6 h-6 sm:w-7 sm:h-7 stroke-[3]" />
               </div>
               <div className="space-y-1">
                 <h3 className="text-lg sm:text-2xl font-extrabold text-slate-900">
