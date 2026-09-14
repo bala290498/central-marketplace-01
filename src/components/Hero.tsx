@@ -43,7 +43,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-6 sm:pt-12">
           {/* Left Text & Callouts Content */}
-          <div className="lg:col-span-8 space-y-4 sm:space-y-6">
+          <div className="lg:col-span-8 space-y-2 sm:space-y-3">
             {/* Top Subtitle Eyebrow & Mobile Cursive Text Row */}
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -75,7 +75,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-tight -mt-0.5 sm:-mt-1">
               Find Locally! <br />
               <span className="text-slate-900">Connect Directly!</span>
             </h1>
