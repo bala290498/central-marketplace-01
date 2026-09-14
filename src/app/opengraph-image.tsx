@@ -18,65 +18,58 @@ export default async function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+          backgroundColor: "#ffffff",
+          backgroundImage: "radial-gradient(#e2e8f0 1.5px, transparent 1.5px)",
+          backgroundSize: "28px 28px",
           position: "relative",
           fontFamily: "system-ui, sans-serif",
-          padding: "60px 40px",
-          color: "#ffffff",
+          padding: "50px 40px",
+          color: "#0f172a",
         }}
       >
-        {/* Subtle background glow effect */}
+        {/* Top border accent line */}
         <div
           style={{
             position: "absolute",
-            top: "-100px",
-            right: "-100px",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(249,115,22,0.2) 0%, rgba(0,0,0,0) 70%)",
-            display: "flex",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-100px",
-            left: "-100px",
-            width: "500px",
-            height: "500px",
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(59,130,246,0.2) 0%, rgba(0,0,0,0) 70%)",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "10px",
+            background: "linear-gradient(90deg, #f97316 0%, #2563eb 50%, #10b981 100%)",
             display: "flex",
           }}
         />
 
-        {/* Top Header Row with Brand Icon & Logo */}
+        {/* Top Brand Header Box */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "24px",
+            gap: "20px",
             marginBottom: "32px",
+            backgroundColor: "#ffffff",
+            border: "2px solid #e2e8f0",
+            padding: "18px 40px",
+            borderRadius: "100px",
+            boxShadow: "0 15px 30px -10px rgba(0,0,0,0.08)",
           }}
         >
-          {/* Brand Icon - Orange circle with white MapPin */}
           <div
             style={{
-              width: "110px",
-              height: "110px",
+              width: "76px",
+              height: "76px",
               borderRadius: "50%",
               backgroundColor: "#f97316",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 10px 25px -5px rgba(249, 115, 22, 0.4)",
+              boxShadow: "0 8px 16px -2px rgba(249, 115, 22, 0.4)",
             }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="68"
-              height="68"
+              width="46"
+              height="46"
               viewBox="0 0 24 24"
               fill="none"
             >
@@ -89,43 +82,28 @@ export default async function Image() {
               <circle cx="12" cy="10" r="3" fill="#f97316" />
             </svg>
           </div>
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-              <span
-                style={{
-                  fontSize: "56px",
-                  fontWeight: 900,
-                  letterSpacing: "-1px",
-                  color: "#ffffff",
-                }}
-              >
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", lineHeight: 1.1 }}>
+              <span style={{ fontSize: "42px", fontWeight: 900, color: "#0f172a", letterSpacing: "-1px" }}>
                 CENTRAL
               </span>
-              <span
-                style={{
-                  fontSize: "56px",
-                  fontWeight: 900,
-                  letterSpacing: "-1px",
-                  color: "#3b82f6",
-                }}
-              >
+              <span style={{ fontSize: "42px", fontWeight: 900, color: "#2563eb", letterSpacing: "-1px" }}>
                 MARKETPLACE
               </span>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "4px" }}>
-              <span
-                style={{
-                  fontSize: "20px",
-                  fontWeight: 800,
-                  color: "#f97316",
-                  letterSpacing: "4px",
-                  textTransform: "uppercase",
-                }}
-              >
-                CHENNAI DESK
-              </span>
-            </div>
+            <span
+              style={{
+                fontSize: "15px",
+                fontWeight: 800,
+                color: "#f97316",
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                marginTop: "4px",
+                textAlign: "left",
+              }}
+            >
+              CHENNAI DESK
+            </span>
           </div>
         </div>
 
@@ -133,51 +111,46 @@ export default async function Image() {
         <div
           style={{
             display: "flex",
-            fontSize: "38px",
-            fontWeight: 800,
-            color: "#f8fafc",
+            fontSize: "46px",
+            fontWeight: 900,
+            color: "#0f172a",
             marginBottom: "16px",
             textAlign: "center",
+            letterSpacing: "-1px",
           }}
         >
           Find Locally! Connect Directly!
         </div>
 
-        {/* Description */}
         <div
           style={{
             display: "flex",
             fontSize: "22px",
-            color: "#94a3b8",
+            color: "#475569",
             textAlign: "center",
-            maxWidth: "850px",
+            maxWidth: "840px",
             marginBottom: "40px",
             lineHeight: 1.4,
+            fontWeight: 500,
           }}
         >
           We connect buyers & customers with property owners, service providers, home food & local sellers in Chennai.
         </div>
 
-        {/* Feature Category Badges */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "16px",
-          }}
-        >
+        {/* Category badges */}
+        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
           <div
             style={{
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              backgroundColor: "rgba(30, 41, 59, 0.8)",
-              border: "1px solid rgba(148, 163, 184, 0.2)",
-              padding: "12px 24px",
-              borderRadius: "50px",
+              backgroundColor: "#eff6ff",
+              border: "1.5px solid #bfdbfe",
+              padding: "12px 22px",
+              borderRadius: "40px",
               fontSize: "18px",
-              fontWeight: 600,
-              color: "#e2e8f0",
+              fontWeight: 700,
+              color: "#1d4ed8",
             }}
           >
             🏠 Property Rentals
@@ -187,13 +160,13 @@ export default async function Image() {
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              backgroundColor: "rgba(30, 41, 59, 0.8)",
-              border: "1px solid rgba(148, 163, 184, 0.2)",
-              padding: "12px 24px",
-              borderRadius: "50px",
+              backgroundColor: "#ecfdf5",
+              border: "1.5px solid #a7f3d0",
+              padding: "12px 22px",
+              borderRadius: "40px",
               fontSize: "18px",
-              fontWeight: 600,
-              color: "#e2e8f0",
+              fontWeight: 700,
+              color: "#047857",
             }}
           >
             🛠️ Service Providers
@@ -203,13 +176,13 @@ export default async function Image() {
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              backgroundColor: "rgba(30, 41, 59, 0.8)",
-              border: "1px solid rgba(148, 163, 184, 0.2)",
-              padding: "12px 24px",
-              borderRadius: "50px",
+              backgroundColor: "#fff7ed",
+              border: "1.5px solid #fed7aa",
+              padding: "12px 22px",
+              borderRadius: "40px",
               fontSize: "18px",
-              fontWeight: 600,
-              color: "#e2e8f0",
+              fontWeight: 700,
+              color: "#c2410c",
             }}
           >
             🍱 Home Food
@@ -219,13 +192,13 @@ export default async function Image() {
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              backgroundColor: "rgba(30, 41, 59, 0.8)",
-              border: "1px solid rgba(148, 163, 184, 0.2)",
-              padding: "12px 24px",
-              borderRadius: "50px",
+              backgroundColor: "#fef2f2",
+              border: "1.5px solid #fecaca",
+              padding: "12px 22px",
+              borderRadius: "40px",
               fontSize: "18px",
-              fontWeight: 600,
-              color: "#e2e8f0",
+              fontWeight: 700,
+              color: "#b91c1c",
             }}
           >
             🛍️ Local Sellers
@@ -233,8 +206,6 @@ export default async function Image() {
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    { ...size }
   );
 }
