@@ -13,20 +13,20 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-2xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         {/* Brand Logo - Left Aligned */}
-        <a href="#home" className="flex items-center gap-2 sm:gap-3 group shrink-0">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-orange-500 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform shrink-0">
-            <MapPin className="w-4 h-4 sm:w-6 sm:h-6 fill-white stroke-orange-500" />
+        <a href="#home" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+          <div className="w-9.5 h-9.5 sm:w-10 sm:h-10 rounded-full bg-orange-500 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform shrink-0">
+            <MapPin className="w-5 h-5 sm:w-6 sm:h-6 fill-white stroke-orange-500" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1 sm:gap-1.5 leading-tight">
-              <span className="font-extrabold text-slate-900 text-xs sm:text-lg tracking-tight">
+              <span className="font-extrabold text-slate-900 text-sm sm:text-lg tracking-tight">
                 CENTRAL
               </span>
-              <span className="font-extrabold text-blue-600 text-xs sm:text-lg tracking-tight">
+              <span className="font-extrabold text-blue-600 text-sm sm:text-lg tracking-tight">
                 MARKETPLACE
               </span>
             </div>
-            <span className="text-[8px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-widest leading-none">
+            <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-widest leading-none">
               CHENNAI DESK
             </span>
           </div>
