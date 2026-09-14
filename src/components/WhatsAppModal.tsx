@@ -236,7 +236,7 @@ export default function WhatsAppModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-xs p-3 sm:p-4 animate-in fade-in duration-200">
-      <div className="bg-white w-full max-w-lg max-h-[92vh] flex flex-col rounded-3xl shadow-2xl relative border border-slate-100 overflow-hidden">
+      <div className="bg-white w-full max-w-lg max-h-[82vh] sm:max-h-[88vh] my-auto flex flex-col rounded-3xl shadow-2xl relative border border-slate-100 overflow-hidden">
         
         {/* Header Bar */}
         <div className="bg-slate-900 px-6 py-4 text-white flex items-center justify-between shrink-0 border-b border-slate-800">
@@ -284,7 +284,7 @@ export default function WhatsAppModal({
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-5">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-3.5 sm:space-y-5 flex-1">
           {step === 1 && (
             /* STEP 1 OF 3: Choose Option */
             <div className="space-y-4 animate-in fade-in duration-200">
@@ -554,7 +554,7 @@ export default function WhatsAppModal({
                   {/* Real Leaflet Map Container */}
                   <div
                     ref={mapContainerRef}
-                    className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative h-48 w-full z-0"
+                    className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative h-36 sm:h-44 w-full z-0"
                   />
 
                   <p className="text-xs text-slate-500 font-medium mt-1">
