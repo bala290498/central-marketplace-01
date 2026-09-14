@@ -586,12 +586,36 @@ export default function WhatsAppModal({
                 </p>
               </div>
 
-              {/* WhatsApp Message Preview Box */}
-              <div className="bg-[#EFEAE2] rounded-2xl p-4 font-mono text-xs sm:text-sm text-slate-800 whitespace-pre-wrap border border-slate-300 shadow-inner relative leading-relaxed">
-                <div className="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-2xs font-sans">
-                  WhatsApp Preview
+              {/* Details Summary Card */}
+              <div className="bg-slate-50 rounded-2xl p-4 sm:p-5 border border-slate-200 space-y-3">
+                <div className="flex justify-between items-center pb-2.5 border-b border-slate-200/80">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Request Type</span>
+                  <span className={`text-xs font-extrabold px-2.5 py-1 rounded-full ${roleBadgeBg}`}>
+                    {isCustomer ? "Looking for a Contact" : "Want to be Listed"}
+                  </span>
                 </div>
-                {generateMessageText()}
+                <div className="flex justify-between items-center pb-2.5 border-b border-slate-200/80">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Category</span>
+                  <span className="text-xs font-extrabold text-slate-900 text-right max-w-[60%]">{category}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2.5 border-b border-slate-200/80">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Area</span>
+                  <span className="text-xs font-extrabold text-slate-900">{area || "Chennai"}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2.5 border-b border-slate-200/80">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Name</span>
+                  <span className="text-xs font-extrabold text-slate-900">{name || "Not provided"}</span>
+                </div>
+                <div className="flex justify-between items-center pb-2.5 border-b border-slate-200/80">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Mobile</span>
+                  <span className="text-xs font-extrabold text-slate-900">{phone || "Not provided"}</span>
+                </div>
+                {pinnedCoords && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Location Pin</span>
+                    <span className="text-xs font-extrabold text-emerald-600">Pinned ({pinnedCoords.lat}, {pinnedCoords.lng})</span>
+                  </div>
+                )}
               </div>
             </div>
           )}
