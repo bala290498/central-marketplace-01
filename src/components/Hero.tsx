@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Users, Store, Handshake, Heart } from "lucide-react";
+import { Users, Store, Handshake, Heart, Search, Rocket, ArrowRight } from "lucide-react";
 
 interface HeroProps {
   onOpenModal: (option?: "search" | "list", category?: string) => void;
@@ -10,21 +10,21 @@ interface HeroProps {
 
 export default function Hero({ onOpenModal }: HeroProps) {
   return (
-    <section id="home" className="relative bg-slate-50 overflow-hidden pt-0 pb-16 sm:pb-24 lg:pb-32">
+    <section id="home" className="relative bg-slate-50 overflow-hidden pt-0 pb-12 sm:pb-16 lg:pb-20">
       {/* 
         Hero Background Image - Flush against Header
       */}
       {/* Desktop Background Image */}
       <div className="hidden md:block absolute inset-0 z-0">
         <Image
-          src="/hero/601B9E4C-DF98-41B2-8051-1BBBEF1B67E1.webp"
+          src="/hero/desktop.webp"
           alt="Chennai Coast Marina Beach Hero Desktop"
           fill
           priority
-          className="object-cover object-right-top md:object-[72%_top] opacity-100"
+          className="object-cover object-right-top md:object-[75%_top] opacity-100"
         />
-        {/* Left-only text overlay fade: covers strictly behind the left text block, fading out smoothly so the entire rest of the image is crisp and clear */}
-        <div className="absolute inset-y-0 left-0 w-full md:w-[50%] lg:w-[42%] bg-linear-to-r from-white/95 via-white/75 via-60% to-transparent pointer-events-none" />
+        {/* Left-only text overlay fade: covers strictly behind the left content block, fading out smoothly so the rest of the map/beach image is crisp */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-[55%] lg:w-[45%] bg-linear-to-r from-white/95 via-white/80 via-60% to-transparent pointer-events-none" />
       </div>
 
       {/* Mobile Background Image */}
@@ -36,19 +36,42 @@ export default function Hero({ onOpenModal }: HeroProps) {
           priority
           className="object-cover object-top opacity-100"
         />
-        {/* Mobile top-only vertical gradient transition: solid white behind text at top, fading smoothly to 100% transparent so the bottom lighthouse and landmark are crystal clear */}
-        <div className="absolute inset-x-0 top-0 h-[60%] bg-linear-to-b from-white/95 via-white/80 via-55% to-transparent pointer-events-none" />
+        {/* Mobile top-only vertical gradient transition */}
+        <div className="absolute inset-x-0 top-0 h-[65%] bg-linear-to-b from-white/95 via-white/85 via-55% to-transparent pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-8 sm:pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start pt-6 sm:pt-12">
           {/* Left Text & Callouts Content */}
           <div className="lg:col-span-8 space-y-4 sm:space-y-6">
-            {/* Top Subtitle Eyebrow */}
-            <div className="inline-block">
-              <span className="text-[11px] sm:text-xs font-extrabold text-slate-700 tracking-widest uppercase bg-white/90 border border-slate-200/80 px-3 py-1 rounded-md shadow-2xs backdrop-blur-xs">
-                YOUR LOCAL CONNECTION DESK
-              </span>
+            {/* Top Subtitle Eyebrow & Mobile Cursive Text Row */}
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <span className="text-[10px] sm:text-xs font-extrabold text-slate-700 tracking-widest uppercase bg-white/90 border border-slate-200/80 px-2.5 py-1 rounded-md shadow-2xs backdrop-blur-xs inline-block">
+                  YOUR LOCAL CONNECTION DESK
+                </span>
+              </div>
+
+              {/* Mobile Cursive Handwriting Text (Visible on mobile/tablet top-right, hidden on desktop lg) */}
+              <div className="lg:hidden relative transform rotate-2 -translate-y-1">
+                <span className="font-handwriting text-2xl sm:text-3xl text-blue-700 font-bold block leading-tight text-right drop-shadow-xs">
+                  Chennai <br />
+                  Connects Here
+                </span>
+                <svg
+                  className="w-28 sm:w-36 h-3 text-blue-500 mt-0.5 ml-auto"
+                  viewBox="0 0 200 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 12C50 3 150 18 195 8"
+                    stroke="currentColor"
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
             </div>
 
             {/* Main Headline */}
@@ -63,39 +86,29 @@ export default function Hero({ onOpenModal }: HeroProps) {
               providers and local sellers in Chennai.
             </p>
 
-            {/* 3 Pill Feature Badges */}
-            <div className="pt-2 sm:pt-4">
-              <div className="inline-flex flex-wrap items-center bg-white/90 backdrop-blur-md rounded-2xl p-2 sm:p-3 border border-slate-200/90 shadow-xs gap-2.5 sm:gap-6">
-                {/* Pill 1 */}
-                <div className="flex items-center gap-2 px-1.5 py-1 sm:py-0">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
-                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-slate-800">
+            {/* 3 Feature Badges - Containerless with dark text & icons to stand out */}
+            <div className="pt-3 sm:pt-4">
+              <div className="w-full sm:w-auto grid grid-cols-3 sm:inline-flex items-center divide-x divide-slate-400/60 text-center sm:text-left gap-0 sm:gap-6">
+                {/* Item 1 */}
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2 sm:px-0">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
+                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
                     Local People
                   </span>
                 </div>
 
-                <div className="hidden sm:block w-px h-6 bg-slate-200" />
-
-                {/* Pill 2 */}
-                <div className="flex items-center gap-2 px-1.5 py-1 sm:py-0">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
-                    <Store className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-slate-800">
+                {/* Item 2 */}
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2 sm:px-0">
+                  <Store className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
+                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
                     Local Businesses
                   </span>
                 </div>
 
-                <div className="hidden sm:block w-px h-6 bg-slate-200" />
-
-                {/* Pill 3 */}
-                <div className="flex items-center gap-2 px-1.5 py-1 sm:py-0">
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
-                    <Handshake className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold text-slate-800">
+                {/* Item 3 */}
+                <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-2 sm:px-0">
+                  <Handshake className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
+                  <span className="text-xs sm:text-sm font-extrabold text-slate-900 leading-tight">
                     Stronger Communities
                   </span>
                 </div>
@@ -103,16 +116,17 @@ export default function Hero({ onOpenModal }: HeroProps) {
             </div>
           </div>
 
-          {/* Right Cursive Script & Sticker Badge Section */}
-          <div className="lg:col-span-4 flex flex-row lg:flex-col items-center lg:items-end justify-between sm:justify-start lg:justify-between h-full pt-2 lg:pt-0 relative gap-4">
+          {/* Right Cursive Script & Sticker Badge Section (Desktop lg only) */}
+          <div className="hidden lg:flex lg:col-span-4 flex-col items-end justify-between h-full pt-2 lg:pt-0 relative gap-4">
             {/* Cursive Handwriting Text */}
-            <div className="relative transform lg:rotate-3 lg:translate-x-2 my-2 lg:my-0">
-              <span className="font-handwriting text-3xl sm:text-4xl lg:text-5xl text-blue-700 font-bold block drop-shadow-xs">
-                Chennai Connects Here
+            <div className="relative transform rotate-3 translate-x-2 my-0 text-right">
+              <span className="font-handwriting text-4xl lg:text-5xl text-blue-700 font-bold block leading-tight drop-shadow-xs">
+                Chennai <br />
+                Connects Here
               </span>
               {/* Decorative Swoosh under text */}
               <svg
-                className="w-36 sm:w-44 lg:w-52 h-4 text-blue-500 mt-0.5"
+                className="w-44 lg:w-52 h-4 text-blue-500 mt-0.5 ml-auto"
                 viewBox="0 0 200 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -127,16 +141,73 @@ export default function Hero({ onOpenModal }: HeroProps) {
             </div>
 
             {/* Slanted Sticker Badge */}
-            <div className="transform -rotate-3 lg:-rotate-6 bg-white/95 backdrop-blur-md px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl shadow-lg border border-slate-200/90 flex items-center gap-2 shrink-0 lg:mt-24">
+            <div className="transform -rotate-6 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl shadow-lg border border-slate-200/90 flex items-center gap-2 shrink-0 mt-24">
               <div className="flex flex-col">
-                <span className="text-[9px] sm:text-[10px] font-black tracking-widest text-slate-500 uppercase">
+                <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">
                   SUPPORT LOCAL
                 </span>
-                <span className="text-xs sm:text-sm font-black text-slate-900 flex items-center gap-1">
+                <span className="text-sm font-black text-slate-900 flex items-center gap-1">
                   GROW TOGETHER
-                  <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-500 fill-rose-500 inline" />
+                  <Heart className="w-4 h-4 text-rose-500 fill-rose-500 inline" />
                 </span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Action Cards Section - Integrated inside Hero Banner */}
+        <div className="mt-6 sm:mt-10 lg:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {/* Card 1: Blue Search Action Card */}
+          <div className="bg-[#F0F7FF]/95 backdrop-blur-md border border-sky-200/90 p-5 sm:p-7 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
+            <div className="flex items-start gap-4 sm:gap-5">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0066FF] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                <Search className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg sm:text-2xl font-extrabold text-slate-900">
+                  I am looking for a contact
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-base font-medium">
+                  Find property, services, providers nearby in Chennai.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 sm:mt-6">
+              <button
+                onClick={() => onOpenModal("search")}
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#0066FF] hover:bg-blue-700 text-white font-bold px-6 py-3 sm:py-3.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer text-sm"
+              >
+                <span>Find Something</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </div>
+
+          {/* Card 2: Green Listing Action Card */}
+          <div className="bg-[#F0FDF4]/95 backdrop-blur-md border border-emerald-200/90 p-5 sm:p-7 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
+            <div className="flex items-start gap-4 sm:gap-5">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#00A859] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                <Rocket className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
+              </div>
+              <div className="space-y-1">
+                <h3 className="text-lg sm:text-2xl font-extrabold text-slate-900">
+                  I want to be listed
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-base font-medium">
+                  Get your property, service, or business found by local customers.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 sm:mt-6">
+              <button
+                onClick={() => onOpenModal("list")}
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#00A859] hover:bg-emerald-700 text-white font-bold px-6 py-3 sm:py-3.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer text-sm"
+              >
+                <span>Get Listed</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
             </div>
           </div>
         </div>

@@ -7,39 +7,47 @@ export default function WhyUs() {
   const features = [
     {
       icon: Phone,
-      bgColor: "bg-emerald-500",
+      bgColor: "bg-emerald-600",
+      lightBg: "bg-emerald-50/80 border-emerald-100/90 hover:border-emerald-300",
+      badgeText: "DIRECT",
       title: "Direct contact details",
       description:
-        "We provide the contact details. You speak directly with the provider.",
+        "We provide direct contact details. You speak directly with property owners, sellers and service providers.",
     },
     {
       icon: Zap,
-      bgColor: "bg-purple-500",
+      bgColor: "bg-purple-600",
+      lightBg: "bg-purple-50/80 border-purple-100/90 hover:border-purple-300",
+      badgeText: "FAST & EASY",
       title: "Stress-free finding",
       description:
-        "One local desk. One area-based list. No groups. No searching through endless chats.",
+        "One local desk. One area-based organized list. No spam groups or searching through endless chat messages.",
     },
     {
       icon: Shield,
-      bgColor: "bg-rose-500",
+      bgColor: "bg-rose-600",
+      lightBg: "bg-rose-50/80 border-rose-100/90 hover:border-rose-300",
+      badgeText: "VERIFIED",
       title: "Feedback loop",
       description:
-        "Every interaction can generate private feedback for the desk.",
+        "Every interaction generates private feedback for the desk to maintain high quality and trusted connections.",
     },
     {
       icon: Star,
       bgColor: "bg-amber-500",
+      lightBg: "bg-amber-50/80 border-amber-100/90 hover:border-amber-300",
+      badgeText: "MONITORED",
       title: "Continuous monitoring",
       description:
-        "If a listing is reported as fake or problematic, the desk reviews it and takes action when appropriate.",
+        "If a listing is reported as fake or problematic, the desk reviews it immediately and takes swift action.",
     },
   ];
 
   return (
-    <section id="about" className="py-16 lg:py-20 bg-white">
+    <section id="about" className="py-16 lg:py-24 bg-slate-50/50 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-10 sm:mb-14 text-left">
           <span className="text-[11px] sm:text-xs font-extrabold text-slate-500 tracking-widest uppercase block mb-1">
             WHY CENTRAL MARKETPLACE
           </span>
@@ -48,19 +56,28 @@ export default function WhyUs() {
           </h2>
         </div>
 
-        {/* 4 Columns Feature List */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* 4 Feature Tile Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {features.map((item, idx) => {
             const IconComp = item.icon;
             return (
-              <div key={idx} className="flex items-start gap-4">
-                <div
-                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${item.bgColor} text-white flex items-center justify-center shrink-0 shadow-xs`}
-                >
-                  <IconComp className="w-5 h-5 sm:w-6 sm:h-6 fill-white/20 stroke-[2.2]" />
-                </div>
-                <div className="space-y-1 pt-0.5">
-                  <h3 className="text-sm sm:text-base font-bold text-slate-900">
+              <div
+                key={idx}
+                className={`${item.lightBg} border rounded-3xl p-6 sm:p-7 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between min-h-[220px] sm:min-h-[240px]`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div
+                      className={`w-12 h-12 rounded-2xl ${item.bgColor} text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform`}
+                    >
+                      <IconComp className="w-6 h-6 stroke-[2.2]" />
+                    </div>
+                    <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase bg-white/80 border border-slate-200/60 px-2.5 py-1 rounded-full">
+                      {item.badgeText}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 mb-2">
                     {item.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">

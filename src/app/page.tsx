@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ActionCardsSection from "@/components/ActionCardsSection";
 import CategoryCards from "@/components/CategoryCards";
 import HowItWorks from "@/components/HowItWorks";
 import WhyUs from "@/components/WhyUs";
@@ -45,7 +44,6 @@ export default function Home() {
       {/* Main Content Sections */}
       <div className="flex-1">
         <Hero onOpenModal={handleOpenModal} />
-        <ActionCardsSection onOpenModal={handleOpenModal} />
         <CategoryCards onOpenModal={handleOpenModal} />
         <HowItWorks />
         <WhyUs />
