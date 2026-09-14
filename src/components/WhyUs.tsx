@@ -7,8 +7,8 @@ export default function WhyUs() {
   const features = [
     {
       icon: Phone,
-      bgColor: "bg-emerald-600",
-      lightBg: "bg-emerald-50/80 border-emerald-100/90 hover:border-emerald-300",
+      bgColor: "bg-blue-600",
+      lightBg: "bg-blue-50/80 border-blue-100/90 hover:border-blue-300",
       badgeText: "DIRECT",
       title: "Direct contact details",
       description:
