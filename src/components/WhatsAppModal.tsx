@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { X, MapPin, ArrowLeft, ArrowRight, CheckCircle2, Navigation, Trash2, Search, Plus, AlertCircle } from "lucide-react";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
@@ -36,6 +36,11 @@ export default function WhatsAppModal({
   const [isLocating, setIsLocating] = useState<boolean>(false);
   const [locError, setLocError] = useState<string>("");
   
+  // Map References
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<any>(null);
+  const markerRef = useRef<any>(null);
+
   // Validation errors for required fields
   const [errors, setErrors] = useState<{
     category?: string;
@@ -60,6 +65,75 @@ export default function WhatsAppModal({
       }
     }
   }, [isOpen, defaultOption, defaultCategory]);
+
+  // Real Leaflet Map Initialization & InvalidateSize Logic
+  useEffect(() => {
+    if (!isOpen || step !== 2 || option !== "list") return;
+
+    let isMounted = true;
+
+    const initLeafletMap = () => {
+      const L = (window as any).L;
+      if (!L || !mapContainerRef.current) return;
+
+      if (!mapRef.current) {
+        const CHENNAI: [number, number] = [13.0827, 80.2707];
+        const newMap = L.map(mapContainerRef.current).setView(CHENNAI, 12);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution: "&copy; OpenStreetMap",
+        }).addTo(newMap);
+
+        // Click map event to pin location
+        newMap.on("click", (e: any) => {
+          const lat = Number(e.latlng.lat.toFixed(6));
+          const lng = Number(e.latlng.lng.toFixed(6));
+          setPinnedCoords({ lat, lng });
+
+          if (!markerRef.current) {
+            markerRef.current = L.marker([lat, lng]).addTo(newMap);
+          } else {
+            markerRef.current.setLatLng([lat, lng]);
+          }
+          newMap.setView([lat, lng], 15);
+        });
+
+        mapRef.current = newMap;
+      }
+
+      // Timeout invalidateSize ensures Leaflet tiles render smoothly inside container
+      setTimeout(() => {
+        if (mapRef.current) {
+          mapRef.current.invalidateSize();
+        }
+      }, 80);
+    };
+
+    // Load Leaflet JS script dynamically if not present
+    if (typeof window !== "undefined" && !(window as any).L) {
+      const existingScript = document.getElementById("leaflet-js");
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.id = "leaflet-js";
+        script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        script.onload = () => {
+          if (isMounted) initLeafletMap();
+        };
+        document.body.appendChild(script);
+      } else {
+        existingScript.addEventListener("load", () => {
+          if (isMounted) initLeafletMap();
+        });
+      }
+    } else {
+      initLeafletMap();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isOpen, step, option]);
 
   if (!isOpen) return null;
 
@@ -88,7 +162,7 @@ export default function WhatsAppModal({
   // Handle Geolocation Location Pinning
   const handleGetLocation = () => {
     if (!navigator.geolocation) {
-      setLocError("Geolocation is not supported by your browser.");
+      setLocError("Location is not available on this device.");
       return;
     }
 
@@ -97,15 +171,24 @@ export default function WhatsAppModal({
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        setPinnedCoords({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
+        const lat = Number(position.coords.latitude.toFixed(6));
+        const lng = Number(position.coords.longitude.toFixed(6));
+        setPinnedCoords({ lat, lng });
         setIsLocating(false);
+
+        const L = (window as any).L;
+        if (L && mapRef.current) {
+          if (!markerRef.current) {
+            markerRef.current = L.marker([lat, lng]).addTo(mapRef.current);
+          } else {
+            markerRef.current.setLatLng([lat, lng]);
+          }
+          mapRef.current.setView([lat, lng], 15);
+        }
       },
       (error) => {
         setIsLocating(false);
-        setLocError("Unable to retrieve location. Please check browser permissions.");
+        setLocError("Could not read your location. Tap the map instead.");
         console.error(error);
       },
       { enableHighAccuracy: true, timeout: 10000 }
@@ -115,6 +198,10 @@ export default function WhatsAppModal({
   const handleClearPin = () => {
     setPinnedCoords(null);
     setLocError("");
+    if (markerRef.current && mapRef.current) {
+      mapRef.current.removeLayer(markerRef.current);
+      markerRef.current = null;
+    }
   };
 
   // Generate Message Text for WhatsApp preview & link
@@ -284,7 +371,7 @@ export default function WhatsAppModal({
           )}
 
           {step === 2 && (
-            /* STEP 2 OF 3: Your Details Form (Validation enforced for required fields) */
+            /* STEP 2 OF 3: Your Details Form */
             <div className="space-y-4 animate-in fade-in duration-200">
               <div className="flex items-center justify-between border-b border-slate-100 pb-2">
                 <div>
@@ -300,7 +387,7 @@ export default function WhatsAppModal({
                 </span>
               </div>
 
-              {/* Subheading: Which category? (MANDATORY) */}
+              {/* Subheading: Which category? */}
               <div className="space-y-1">
                 <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
                   Which category? <span className="text-rose-500">*</span>
@@ -335,7 +422,7 @@ export default function WhatsAppModal({
                 )}
               </div>
 
-              {/* Area Field (MANDATORY) */}
+              {/* Area Field */}
               <div className="space-y-1">
                 <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
                   Which area in Chennai? <span className="text-rose-500">*</span>
@@ -365,7 +452,7 @@ export default function WhatsAppModal({
                 )}
               </div>
 
-              {/* Name Field (MANDATORY) */}
+              {/* Name Field */}
               <div className="space-y-1">
                 <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
                   What's your name? <span className="text-rose-500">*</span>
@@ -395,7 +482,7 @@ export default function WhatsAppModal({
                 )}
               </div>
 
-              {/* WhatsApp / Mobile Field (MANDATORY) */}
+              {/* WhatsApp / Mobile Field */}
               <div className="space-y-1">
                 <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
                   Your WhatsApp / mobile <span className="text-rose-500">*</span>
@@ -425,7 +512,7 @@ export default function WhatsAppModal({
                 )}
               </div>
 
-              {/* Location Pin Option (OPTIONAL - Only pin location is optional) */}
+              {/* Location Pin Section (Only visible for Providers) */}
               {!isCustomer && (
                 <div className="space-y-2 pt-2 border-t border-slate-100">
                   <div className="flex items-center justify-between">
@@ -433,11 +520,11 @@ export default function WhatsAppModal({
                       Pin your location
                     </label>
                     <span className="text-[11px] font-extrabold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md">
-                      Optional (Skip if not needed)
+                      Optional
                     </span>
                   </div>
                   <p className="text-xs text-slate-500 font-medium">
-                    Tap the map or use your current location.
+                    Optional. Tap the map or use your current location.
                   </p>
 
                   {/* Pin Action Buttons */}
@@ -449,7 +536,7 @@ export default function WhatsAppModal({
                       className="inline-flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 font-extrabold px-3 py-2 rounded-xl text-xs border border-blue-200 transition-colors cursor-pointer active:scale-98 disabled:opacity-50"
                     >
                       <Navigation className={`w-3.5 h-3.5 ${isLocating ? "animate-spin" : ""}`} />
-                      <span>{isLocating ? "Locating..." : "📍 Use my location"}</span>
+                      <span>{isLocating ? "Locating..." : "Use my location"}</span>
                     </button>
 
                     {pinnedCoords && (
@@ -459,48 +546,22 @@ export default function WhatsAppModal({
                         className="inline-flex items-center gap-1 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold px-3 py-2 rounded-xl text-xs border border-rose-200 transition-colors cursor-pointer active:scale-98"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
-                        <span>❌ Clear pin</span>
+                        <span>Clear pin</span>
                       </button>
                     )}
                   </div>
 
-                  {/* Leaflet / OpenStreetMap Location Preview Embed */}
+                  {/* Real Leaflet Map Container */}
                   <div
-                    onClick={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      const xRatio = (e.clientX - rect.left) / rect.width;
-                      const yRatio = (e.clientY - rect.top) / rect.height;
-                      const baseLat = pinnedCoords?.lat || 13.0827;
-                      const baseLng = pinnedCoords?.lng || 80.2707;
-                      const newLat = baseLat + (0.5 - yRatio) * 0.04;
-                      const newLng = baseLng + (xRatio - 0.5) * 0.04;
-                      setPinnedCoords({ lat: Number(newLat.toFixed(4)), lng: Number(newLng.toFixed(4)) });
-                    }}
-                    title="Click map to manually set location pin"
-                    className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative h-40 cursor-crosshair group"
-                  >
-                    <div className="absolute inset-x-0 top-0 -bottom-8 overflow-hidden pointer-events-none">
-                      <iframe
-                        title="Location Pin Map"
-                        width="100%"
-                        height="125%"
-                        frameBorder="0"
-                        scrolling="no"
-                        src={`https://www.openstreetmap.org/export/embed.html?bbox=${
-                          (pinnedCoords?.lng || 80.2707) - 0.015
-                        }%2C${
-                          (pinnedCoords?.lat || 13.0827) - 0.015
-                        }%2C${
-                          (pinnedCoords?.lng || 80.2707) + 0.015
-                        }%2C${
-                          (pinnedCoords?.lat || 13.0827) + 0.015
-                        }&layer=mapnik&marker=${
-                          pinnedCoords?.lat || 13.0827
-                        }%2C${pinnedCoords?.lng || 80.2707}`}
-                        className="w-full h-full border-none"
-                      />
-                    </div>
-                  </div>
+                    ref={mapContainerRef}
+                    className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative h-48 w-full z-0"
+                  />
+
+                  <p className="text-xs text-slate-500 font-medium mt-1">
+                    {pinnedCoords
+                      ? `Pinned: ${pinnedCoords.lat}, ${pinnedCoords.lng}`
+                      : "No pin yet. You can skip this."}
+                  </p>
 
                   {locError && (
                     <p className="text-xs font-semibold text-rose-600 mt-1">{locError}</p>

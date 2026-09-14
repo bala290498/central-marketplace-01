@@ -30,6 +30,9 @@ export default function RootLayout({
       lang="en"
       className={`${jakarta.variable} ${caveat.variable} h-full antialiased scroll-smooth`}
     >
+      <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-white text-slate-900">
         {children}
       </body>
