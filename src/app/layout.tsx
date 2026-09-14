@@ -47,6 +47,14 @@ export const metadata: Metadata = {
     title: "Central Marketplace - Chennai Desk | Find Locally! Connect Directly!",
     description: "Central Marketplace connects buyers and customers with local property owners, service providers, home food, and local sellers in Chennai.",
     siteName: "Central Marketplace",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Central Marketplace - Chennai Desk",
+      },
+    ],
     locale: "en_IN",
     type: "website",
   },
@@ -54,6 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Central Marketplace - Chennai Desk",
     description: "Central Marketplace connects buyers and customers with local property owners, service providers, home food, and local sellers in Chennai.",
+    images: ["/opengraph-image.png"],
   },
 };
 
