@@ -83,27 +83,12 @@ export async function GET(req: NextRequest) {
                 <circle cx="12" cy="10" r="3" fill="#f97316" />
               </svg>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", textAlign: "left" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", lineHeight: 1.1 }}>
-                <span style={{ fontSize: "42px", fontWeight: 900, color: "#0f172a", letterSpacing: "-1px" }}>
-                  CENTRAL
-                </span>
-                <span style={{ fontSize: "42px", fontWeight: 900, color: "#2563eb", letterSpacing: "-1px" }}>
-                  MARKETPLACE
-                </span>
-              </div>
-              <span
-                style={{
-                  fontSize: "15px",
-                  fontWeight: 800,
-                  color: "#f97316",
-                  letterSpacing: "4px",
-                  textTransform: "uppercase",
-                  marginTop: "4px",
-                  textAlign: "left",
-                }}
-              >
-                CHENNAI DESK
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", lineHeight: 1.1 }}>
+              <span style={{ fontSize: "44px", fontWeight: 900, color: "#0f172a", letterSpacing: "-1px" }}>
+                CENTRAL
+              </span>
+              <span style={{ fontSize: "44px", fontWeight: 900, color: "#2563eb", letterSpacing: "-1px" }}>
+                MARKETPLACE
               </span>
             </div>
           </div>
