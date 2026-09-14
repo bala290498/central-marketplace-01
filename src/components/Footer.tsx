@@ -97,7 +97,7 @@ export default function Footer({ onOpenModal }: FooterProps) {
                   onClick={() => onOpenModal("search")}
                   className="hover:text-white transition-colors text-left cursor-pointer"
                 >
-                  Report an issue (WhatsApp)
+                  Report an issue
                 </button>
               </li>
               <li>
