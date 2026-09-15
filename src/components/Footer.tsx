@@ -147,7 +147,7 @@ export default function Footer({ onOpenModal }: FooterProps) {
 
         {/* Bottom copyright row */}
         <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-medium gap-3 text-center sm:text-left">
-          <p>© 2024 Central Marketplace. All rights reserved.</p>
+          <p>© 2026 Central Marketplace. All rights reserved.</p>
           <p className="text-slate-400 font-semibold">
             A stronger Chennai, Together.
           </p>
