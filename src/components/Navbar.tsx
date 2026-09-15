@@ -2,7 +2,6 @@
 
 import React from "react";
 import { MapPin } from "lucide-react";
-import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 interface NavbarProps {
   onOpenModal: (option?: "search" | "list", category?: string) => void;
@@ -36,9 +35,8 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
         <div className="flex items-center">
           <button
             onClick={() => onOpenModal("search")}
-            className="flex items-center gap-1.5 sm:gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-1.5 sm:px-5 sm:py-2.5 rounded-full font-extrabold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all active:scale-95 cursor-pointer shrink-0"
+            className="flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 sm:px-5 sm:py-2.5 rounded-full font-extrabold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all active:scale-95 cursor-pointer shrink-0"
           >
-            <WhatsAppIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             <span>Get Started</span>
           </button>
         </div>

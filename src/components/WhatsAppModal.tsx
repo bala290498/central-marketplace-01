@@ -231,7 +231,6 @@ export default function WhatsAppModal({
   };
 
   const isCustomer = option === "search";
-  const roleBadgeText = isCustomer ? "Customer" : "Provider";
   const roleBadgeBg = isCustomer ? "bg-blue-100 text-blue-800" : "bg-emerald-100 text-emerald-800";
 
   return (
@@ -252,11 +251,6 @@ export default function WhatsAppModal({
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-200 border border-slate-700">
                   Step {step} of 3
                 </span>
-                {step > 1 && (
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${roleBadgeBg}`}>
-                    {roleBadgeText}
-                  </span>
-                )}
               </div>
               <p className="text-xs text-slate-300 font-medium">
                 {step === 1 && "Choose Option"}
@@ -373,7 +367,7 @@ export default function WhatsAppModal({
           {step === 2 && (
             /* STEP 2 OF 3: Your Details Form */
             <div className="space-y-4 animate-in fade-in duration-200">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+              <div className="border-b border-slate-100 pb-2">
                 <div>
                   <span className="text-[10px] font-black tracking-widest text-emerald-600 uppercase bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
                     Step 2 of 3
@@ -382,9 +376,6 @@ export default function WhatsAppModal({
                     Your details
                   </h3>
                 </div>
-                <span className={`text-xs font-black px-3 py-1 rounded-full ${roleBadgeBg}`}>
-                  {roleBadgeText}
-                </span>
               </div>
 
               {/* Subheading: Which category? */}
@@ -452,6 +443,63 @@ export default function WhatsAppModal({
                 )}
               </div>
 
+              {/* Location Pin Section (Only visible for Providers) */}
+              {!isCustomer && (
+                <div className="space-y-2 pt-2 border-t border-slate-100">
+                  <div className="flex items-center justify-between">
+                    <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
+                      Pin your location
+                    </label>
+                    <span className="text-[11px] font-extrabold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md">
+                      Optional
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Optional. Tap the map or use your current location.
+                  </p>
+
+                  {/* Pin Action Buttons */}
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <button
+                      type="button"
+                      onClick={handleGetLocation}
+                      disabled={isLocating}
+                      className="inline-flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 font-extrabold px-3 py-2 rounded-xl text-xs border border-blue-200 transition-colors cursor-pointer active:scale-98 disabled:opacity-50"
+                    >
+                      <Navigation className={`w-3.5 h-3.5 ${isLocating ? "animate-spin" : ""}`} />
+                      <span>{isLocating ? "Locating..." : "Use my location"}</span>
+                    </button>
+
+                    {pinnedCoords && (
+                      <button
+                        type="button"
+                        onClick={handleClearPin}
+                        className="inline-flex items-center gap-1 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold px-3 py-2 rounded-xl text-xs border border-rose-200 transition-colors cursor-pointer active:scale-98"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Clear pin</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Real Leaflet Map Container */}
+                  <div
+                    ref={mapContainerRef}
+                    className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative h-36 sm:h-44 w-full z-0"
+                  />
+
+                  <p className="text-xs text-slate-500 font-medium mt-1">
+                    {pinnedCoords
+                      ? `Pinned: ${pinnedCoords.lat}, ${pinnedCoords.lng}`
+                      : "No pin yet. You can skip this."}
+                  </p>
+
+                  {locError && (
+                    <p className="text-xs font-semibold text-rose-600 mt-1">{locError}</p>
+                  )}
+                </div>
+              )}
+
               {/* Name Field */}
               <div className="space-y-1">
                 <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
@@ -511,63 +559,6 @@ export default function WhatsAppModal({
                   </p>
                 )}
               </div>
-
-              {/* Location Pin Section (Only visible for Providers) */}
-              {!isCustomer && (
-                <div className="space-y-2 pt-2 border-t border-slate-100">
-                  <div className="flex items-center justify-between">
-                    <label className="block text-xs font-black text-slate-800 uppercase tracking-wider">
-                      Pin your location
-                    </label>
-                    <span className="text-[11px] font-extrabold text-slate-400 bg-slate-100 px-2 py-0.5 rounded-md">
-                      Optional
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-500 font-medium">
-                    Optional. Tap the map or use your current location.
-                  </p>
-
-                  {/* Pin Action Buttons */}
-                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                    <button
-                      type="button"
-                      onClick={handleGetLocation}
-                      disabled={isLocating}
-                      className="inline-flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 font-extrabold px-3 py-2 rounded-xl text-xs border border-blue-200 transition-colors cursor-pointer active:scale-98 disabled:opacity-50"
-                    >
-                      <Navigation className={`w-3.5 h-3.5 ${isLocating ? "animate-spin" : ""}`} />
-                      <span>{isLocating ? "Locating..." : "Use my location"}</span>
-                    </button>
-
-                    {pinnedCoords && (
-                      <button
-                        type="button"
-                        onClick={handleClearPin}
-                        className="inline-flex items-center gap-1 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold px-3 py-2 rounded-xl text-xs border border-rose-200 transition-colors cursor-pointer active:scale-98"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                        <span>Clear pin</span>
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Real Leaflet Map Container */}
-                  <div
-                    ref={mapContainerRef}
-                    className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100 relative h-36 sm:h-44 w-full z-0"
-                  />
-
-                  <p className="text-xs text-slate-500 font-medium mt-1">
-                    {pinnedCoords
-                      ? `Pinned: ${pinnedCoords.lat}, ${pinnedCoords.lng}`
-                      : "No pin yet. You can skip this."}
-                  </p>
-
-                  {locError && (
-                    <p className="text-xs font-semibold text-rose-600 mt-1">{locError}</p>
-                  )}
-                </div>
-              )}
             </div>
           )}
 
