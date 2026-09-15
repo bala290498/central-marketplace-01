@@ -88,9 +88,9 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
             {/* 3 Feature Badges - Containerless with dark text & icons */}
             <div className="pt-3 sm:pt-4">
-              <div className="w-full sm:w-auto grid grid-cols-3 sm:inline-flex items-center divide-x divide-slate-400/60 text-center">
+              <div className="w-full sm:max-w-xl grid grid-cols-3 items-center divide-x divide-slate-400/60 text-center">
                 {/* Item 1 */}
-                <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
+                <div className="flex flex-col items-center justify-center gap-1.5 px-1 sm:px-4">
                   <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
                   <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
                     Local <br className="sm:hidden" /> People
@@ -98,7 +98,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                 </div>
 
                 {/* Item 2 */}
-                <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
+                <div className="flex flex-col items-center justify-center gap-1.5 px-1 sm:px-4">
                   <Store className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
                   <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
                     Local <br className="sm:hidden" /> Businesses
@@ -106,7 +106,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                 </div>
 
                 {/* Item 3 */}
-                <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
+                <div className="flex flex-col items-center justify-center gap-1.5 px-1 sm:px-4">
                   <Handshake className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
                   <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
                     Stronger <br className="sm:hidden" /> Communities
