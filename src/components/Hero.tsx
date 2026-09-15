@@ -86,15 +86,14 @@ export default function Hero({ onOpenModal }: HeroProps) {
               providers and local sellers in Chennai.
             </p>
 
-            {/* 3 Feature Badges - Containerless with dark text & icons, 1 word per line */}
+            {/* 3 Feature Badges - Containerless with dark text & icons */}
             <div className="pt-3 sm:pt-4">
               <div className="w-full sm:w-auto grid grid-cols-3 sm:inline-flex items-center divide-x divide-slate-400/60 text-center">
                 {/* Item 1 */}
                 <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
                   <Users className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
                   <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
-                    Local <br />
-                    People
+                    Local <br className="sm:hidden" /> People
                   </span>
                 </div>
 
@@ -102,8 +101,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                 <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
                   <Store className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
                   <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
-                    Local <br />
-                    Businesses
+                    Local <br className="sm:hidden" /> Businesses
                   </span>
                 </div>
 
@@ -111,8 +109,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
                 <div className="flex flex-col items-center justify-center gap-1.5 px-2 sm:px-6">
                   <Handshake className="w-5 h-5 sm:w-6 sm:h-6 text-slate-900 stroke-[2.25]" />
                   <span className="text-xs sm:text-base font-extrabold text-slate-900 leading-tight whitespace-nowrap">
-                    Stronger <br />
-                    Communities
+                    Stronger <br className="sm:hidden" /> Communities
                   </span>
                 </div>
               </div>
@@ -159,27 +156,27 @@ export default function Hero({ onOpenModal }: HeroProps) {
         </div>
 
         {/* Action Cards Section - Integrated inside Hero Banner */}
-        <div className="mt-6 sm:mt-10 lg:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="mt-5 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
           {/* Card 1: Blue Search Action Card */}
-          <div className="bg-[#F0F7FF]/95 backdrop-blur-md border border-sky-200/90 p-5 sm:p-7 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
-            <div className="flex items-start gap-4 sm:gap-5">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0066FF] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
-                <Search className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5]" />
+          <div className="bg-[#F0F7FF]/95 backdrop-blur-md border border-sky-200/90 p-4 sm:p-5 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
+            <div className="flex items-start gap-3.5 sm:gap-4">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#0066FF] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                <Search className="w-5 h-5 sm:w-5 sm:h-5 stroke-[2.5]" />
               </div>
-              <div className="space-y-1">
-                <h3 className="text-lg sm:text-2xl font-extrabold text-slate-900">
+              <div className="space-y-0.5">
+                <h3 className="text-base sm:text-lg lg:text-xl font-extrabold text-slate-900">
                   I am looking for a contact
                 </h3>
-                <p className="text-slate-600 text-xs sm:text-base font-medium">
+                <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed">
                   Find verified property, home foods, trusted service providers, and local sellers nearby in Chennai.
                 </p>
               </div>
             </div>
 
-            <div className="mt-5 sm:mt-6">
+            <div className="mt-4">
               <button
                 onClick={() => onOpenModal("search")}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#0066FF] hover:bg-blue-700 text-white font-bold px-6 py-3 sm:py-3.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer text-sm"
+                className="w-full sm:w-44 inline-flex items-center justify-center gap-2 bg-[#0066FF] hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer text-xs sm:text-sm"
               >
                 <span>Find Something</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -188,25 +185,25 @@ export default function Hero({ onOpenModal }: HeroProps) {
           </div>
 
           {/* Card 2: Green Listing Action Card */}
-          <div className="bg-[#F0FDF4]/95 backdrop-blur-md border border-emerald-200/90 p-5 sm:p-7 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
-            <div className="flex items-start gap-4 sm:gap-5">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#00A859] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
-                <Plus className="w-6 h-6 sm:w-7 sm:h-7 stroke-[3]" />
+          <div className="bg-[#F0FDF4]/95 backdrop-blur-md border border-emerald-200/90 p-4 sm:p-5 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between">
+            <div className="flex items-start gap-3.5 sm:gap-4">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#00A859] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
+                <Plus className="w-5 h-5 sm:w-5 sm:h-5 stroke-[3]" />
               </div>
-              <div className="space-y-1">
-                <h3 className="text-lg sm:text-2xl font-extrabold text-slate-900">
+              <div className="space-y-0.5">
+                <h3 className="text-base sm:text-lg lg:text-xl font-extrabold text-slate-900">
                   I want to be listed
                 </h3>
-                <p className="text-slate-600 text-xs sm:text-base font-medium">
+                <p className="text-slate-600 text-xs sm:text-sm font-medium leading-relaxed">
                   Get your property, service, or business found by local customers.
                 </p>
               </div>
             </div>
 
-            <div className="mt-5 sm:mt-6">
+            <div className="mt-4">
               <button
                 onClick={() => onOpenModal("list")}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#00A859] hover:bg-emerald-700 text-white font-bold px-6 py-3 sm:py-3.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer text-sm"
+                className="w-full sm:w-44 inline-flex items-center justify-center gap-2 bg-[#00A859] hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-xs hover:shadow-md transition-all active:scale-98 cursor-pointer text-xs sm:text-sm"
               >
                 <span>Get Listed</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
