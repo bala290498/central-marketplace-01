@@ -48,7 +48,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <span className="text-[10px] sm:text-xs font-extrabold text-slate-700 tracking-widest uppercase bg-white/90 border border-slate-200/80 px-2.5 py-1 rounded-md shadow-2xs backdrop-blur-xs inline-block">
-                  YOUR LOCAL CONNECTION DESK
+                  YOUR LOCAL LISTING PLATFORM
                 </span>
               </div>
 
