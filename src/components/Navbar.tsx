@@ -8,6 +8,13 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onOpenModal }: NavbarProps) {
+  const navLinks = [
+    { name: "Categories", href: "#categories" },
+    { name: "How It Works", href: "#how-it-works" },
+    { name: "Why Us", href: "#about" },
+    { name: "Contact", href: "#contact" },
+  ];
+
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-2xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
@@ -31,7 +38,20 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
           </div>
         </a>
 
-        {/* Right Action Button - Rounded Corner Style for all screens */}
+        {/* Quick Navigation Links - Visible on Desktop only */}
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="px-3.5 py-2 rounded-full text-xs lg:text-sm font-bold text-slate-700 hover:text-blue-600 hover:bg-blue-50/80 transition-all duration-200"
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
+
+        {/* Right Action Button */}
         <div className="flex items-center">
           <button
             onClick={() => onOpenModal("search")}
@@ -44,3 +64,5 @@ export default function Navbar({ onOpenModal }: NavbarProps) {
     </header>
   );
 }
+
+
